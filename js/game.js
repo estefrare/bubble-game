@@ -33,12 +33,12 @@ var game = {
 		}
 		//CREA FRUITS
 		for(var i = 1; i < 250; i++){
-		  fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[i%12]);
+		  fruits.create(i, randomdistance.x(), randomdistance.y(), 1, randomColor());
 		  game.elements.push(fruits.list[i]);
 		}
 		//CREA ENEMIES
-		for(var i = 1; i < 10; i++){
-		  enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, color[i%12]);
+		for(var i = 1; i < 15; i++){
+		  enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, randomColor());
 		  game.elements.push(enemis.list[i]);
 		}
 		//COLOCA PAREDES
@@ -124,31 +124,3 @@ var gameStateEnum = {
 	win: 'w',
 	over: 'o'
 }
-
-var color = {
-  0: '#FF0000',
-  1: '#00FF00',
-  2: '#0000FF',
-  3: '#FFFF00',
-  4: '#00FFFF',
-  5: '#FF00FF',
-  6: '#660000',
-  7: '#006600',
-  8: '#000066',
-  9: '#666600',
-  10: '#006666',
-  11: '#660066',
-  12: '#006666',
-  13: '#660066',
-}
-
-/*  1: '#F7FE2E',
-  2: '#F7FE2E',
-  3: '#FFBF00',
-  4: '#FF4000',
-  5: '#80FF00',
-  6: '#F7FE2E',
-  7: '#F7FE2E',
-  8: '#FFBF00',
-  9: '#FF4000',
-  10: '#80FF00'*/

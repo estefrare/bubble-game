@@ -50,19 +50,19 @@ var enemis = {
       checkCollision: function(){
         for (var i = 0; i < game.elements.length; i++){
           if(game.elements[i].class === 'fruit'){
-            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ //collision optimized
+            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ 
               enemis.list[id].radius += .1;
               game.elements.splice(i, 1);
-              fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[random()]);
+              fruits.create(i, randomdistance.x(), randomdistance.y(), 1, randomColor());
               game.elements.push(fruits.list[i]);
             }, 1 /*deep*/);
           }
           if(game.elements[i].class === 'bomb'){
-            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ //collision optimized
+            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ 
               if(game.elements[i].state == true && enemis.list[id].radius > 15){
                 enemis.list[id].radius = (enemis.list[id].radius/3)*2;
                 game.elements[i].state = false;
-                game.elements[i].comeBack(); //new function
+                game.elements[i].comeBack();
               }
             }, 1)
           }

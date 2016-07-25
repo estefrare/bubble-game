@@ -26,15 +26,15 @@ var player = {
   checkCollision: function(){
     for (var i = 0; i < game.elements.length; i++){
       if(game.elements[i].class === 'fruit'){
-        collision.circleAndCircle(player, game.elements[i], function(){ //collision optimized
+        collision.circleAndCircle(player, game.elements[i], function(){ 
           player.radius += .1;
           game.elements.splice(i, 1);
-          fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[random()]);
+          fruits.create(i, randomdistance.x(), randomdistance.y(), 1, randomColor());
           game.elements.push(fruits.list[i]);
         } ,1);
       }
       if(game.elements[i].class === 'enemy'){
-        collision.circleAndCircle(player, game.elements[i], function(){ //collision optimized
+        collision.circleAndCircle(player, game.elements[i], function(){ 
           if(player.radius > game.elements[i].radius + .5){
             player.radius += game.elements[i].radius / 5;
             game.elements.splice(i, 1);
