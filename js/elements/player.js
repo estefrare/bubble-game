@@ -26,23 +26,52 @@ var player = {
   checkCollision: function(){
     for (var i = 0; i < game.elements.length; i++){
       if(game.elements[i].class === 'fruit'){
-        collision.playerAndFruit(player, game.elements[i], i);
+        collision.circleAndCircle(player, game.elements[i], function(){ //collision optimized
+          player.radius += .1;
+          game.elements.splice(i, 1);
+          fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[random()]);
+          game.elements.push(fruits.list[i]);
+        } ,1);
       }
       if(game.elements[i].class === 'enemy'){
-        collision.playerAndEnemis(player, game.elements[i], i);
+        collision.circleAndCircle(player, game.elements[i], function(){ //collision optimized
+          if(player.radius > game.elements[i].radius + .5){
+            player.radius += game.elements[i].radius / 5;
+            game.elements.splice(i, 1);
+          }
+          if(game.elements[i].radius > player.radius + .5){
+            game.elements[i].radius += player.radius / 3;
+            game.over();
+          }
+        }, 1.5 /*deep*/);
       }
       if(game.elements[i].class === 'bomb'){
-            collision.enemyAndBomb(player, game.elements[i]);
-      }
+          collision.circleAndCircle(player, game.elements[i], function(){ //collision optimized
+            if(game.elements[i].state == true && player.radius > 15){
+              player.radius = (player.radius/3)*2;
+              game.elements[i].state = false;
+              setTimeout(function (){
+                game.elements[i].state = true;
+              },60000); // 1'
+            }
+          }, 1)
+        }
     }
   },
 	update: function (){
     this.checkCollision();
     this.move();
 	},
-	init: function (){
-
-	},
+	init: function (){ //never the player will be created over a enemy
+    for(var i = 0; i < game.elements.length; i++){
+      if(game.elements[i].class == 'enemy'){
+        collision.circleAndCircle(player, game.elements[i], function(){ 
+            player.x = randomdistance.x();
+            player.y = randomdistance.y();
+        }, 1 /*deep*/);
+      }
+    }
+  },
 	render: function (){
 	  game.context.fillStyle = this.color;
     game.context.beginPath();

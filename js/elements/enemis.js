@@ -50,10 +50,21 @@ var enemis = {
       checkCollision: function(){
         for (var i = 0; i < game.elements.length; i++){
           if(game.elements[i].class === 'fruit'){
-            collision.playerAndFruit(enemis.list[id], game.elements[i], i);
+            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ //collision optimized
+              enemis.list[id].radius += .1;
+              game.elements.splice(i, 1);
+              fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[random()]);
+              game.elements.push(fruits.list[i]);
+            }, 1 /*deep*/);
           }
           if(game.elements[i].class === 'bomb'){
-            collision.enemyAndBomb(enemis.list[id], game.elements[i]);
+            collision.circleAndCircle(enemis.list[id], game.elements[i], function(){ //collision optimized
+              if(game.elements[i].state == true && enemis.list[id].radius > 15){
+                enemis.list[id].radius = (enemis.list[id].radius/3)*2;
+                game.elements[i].state = false;
+                game.elements[i].comeBack(); //new function
+              }
+            }, 1)
           }
         }
       },

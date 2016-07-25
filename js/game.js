@@ -16,45 +16,43 @@ var game = {
 		game.height = canvas.height;
 		game.context = canvas.context;
 		game.state =  gameStateEnum.playing;
-    game.img = new Image();
-    game.img.src = 'img/background.jpg';
+		game.img = new Image();
+		game.img.src = 'img/background.jpg';
 		//CREA PAREDES
 		wall.create('top', 0, -990, game.width, 1000);
 		wall.create('bottom', 0, game.height-10, game.width, 1000);
 		wall.create('left', -990, 0, 1000, game.height);
 		wall.create('right', game.width-10, 0, 1000, game.height);
-    //CREA BOMBS
-    bombs.create(1, game.width/ 2, game.height / 4, 4, '#A4A4A4', true);
-    bombs.create(2, game.width/ 2, (game.height / 4)*3, 4, '#A4A4A4', true);
-    bombs.create(3, game.width/ 4, game.height / 2, 4, '#A4A4A4', true);
-    bombs.create(4, (game.width/ 4)*3, game.height / 2, 4, '#A4A4A4', true);
-    /*bombs.create(i, , , 3, '#A4A4A4');
-    bombs.create(i, , , 3, '#A4A4A4');*/
-    for(var i = 1; i < 5; i++){
-      game.elements.push(bombs.list[i]);
-    }
-    //CREA FRUITS
-    for(var i = 1; i < 250; i++){
-      fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[i%12]);
-      game.elements.push(fruits.list[i]);
-    }
-    //CREA ENEMIES
-    for(var i = 1; i < 10; i++){
-      enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, color[i%12]);
-      game.elements.push(enemis.list[i]);
-    }
-    //COLOCA PAREDES
-	game.elements.push(wall.list.top);
-	game.elements.push(wall.list.bottom);
-	game.elements.push(wall.list.left);
-	game.elements.push(wall.list.right);
-	//COLOCA PLAYER
-	game.elements.push(player);
-	for (var i = 0; i < game.elements.length; i++){
-		game.elements[i].init();
-	}
-	setInterval(game.update, 1000/60);
-	//game.update();
+		//CREA BOMBS
+		bombs.create(1, game.width/ 2, game.height / 4, 4, '#A4A4A4', true);
+		bombs.create(2, game.width/ 2, (game.height / 4)*3, 4, '#A4A4A4', true);
+		bombs.create(3, game.width/ 4, game.height / 2, 4, '#A4A4A4', true);
+		bombs.create(4, (game.width/ 4)*3, game.height / 2, 4, '#A4A4A4', true);
+		for(var i = 1; i < 5; i++){
+		  game.elements.push(bombs.list[i]);
+		}
+		//CREA FRUITS
+		for(var i = 1; i < 250; i++){
+		  fruits.create(i, randomdistance.x(), randomdistance.y(), 1, color[i%12]);
+		  game.elements.push(fruits.list[i]);
+		}
+		//CREA ENEMIES
+		for(var i = 1; i < 10; i++){
+		  enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, color[i%12]);
+		  game.elements.push(enemis.list[i]);
+		}
+		//COLOCA PAREDES
+		game.elements.push(wall.list.top);
+		game.elements.push(wall.list.bottom);
+		game.elements.push(wall.list.left);
+		game.elements.push(wall.list.right);
+		//COLOCA PLAYER
+		game.elements.push(player);
+		for (var i = 0; i < game.elements.length; i++){
+			game.elements[i].init();
+		}
+		setInterval(game.update, 1000/60);
+		//game.update();
 	},
 	pause: function(){
 		if(game.state === gameStateEnum.pause){
@@ -140,6 +138,8 @@ var color = {
   9: '#666600',
   10: '#006666',
   11: '#660066',
+  12: '#006666',
+  13: '#660066',
 }
 
 /*  1: '#F7FE2E',

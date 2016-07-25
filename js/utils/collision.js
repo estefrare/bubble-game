@@ -1,56 +1,12 @@
 var collision = {
-  playerAndFruit: function(player, fruit, index){ //callback
-    var dx = player.x - fruit.x;
-    var dy = player.y - fruit.y;
+  circleAndCircle: function(circle1, circle2, callback, deep){ //deep: as can circle1 through the other circle2
+    deep = deep || 1; // if is 1, no have deep
+    var dx = circle1.x - circle2.x;
+    var dy = circle1.y - circle2.y;
     var distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance < player.radius + fruit.radius) {
-        player.radius += .1;
-        game.elements.splice(index, 1);
-        fruits.create(index, randomdistance.x(), randomdistance.y(), 1, color[random()]);
-        game.elements.push(fruits.list[index]);
-    }
-  },
-  enemyAndBomb:function(enemy, bomb){
-    var dx = enemy.x - bomb.x;
-    var dy = enemy.y - bomb.y;
-    var distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < enemy.radius + bomb.radius && bomb.state == true && enemy.radius > 15){
-      enemy.radius = (enemy.radius/3)*2;
-      bomb.state = false;
-      setTimeout(function (){
-        bomb.state = true;
-      },60000); // 1'
-    }
-  },
-  playerAndEnemis: function(player, enemy, index){
-    var dx = player.x - enemy.x;
-    var dy = player.y - enemy.y;
-    var distance = Math.sqrt(dx * dx + dy * dy);
-
-    if ((distance * 1.5) < player.radius + enemy.radius ){
-      if(player.radius > enemy.radius + .5){
-        player.radius += enemy.radius / 5;
-        game.elements.splice(index, 1);
-      }
-      if(enemy.radius > player.radius + .5){
-        enemy.radius += player.radius / 3;
-        game.over();
-      }
-    }
-  },
-  enemyAndFruit: function(enemy, fruit, index){
-    var dx = enemy.x - fruit.x;
-    var dy = enemy.y - fruit.y;
-    var distance = Math.sqrt(dx * dx + dy * dy);
-
-    if ((distance * 1.5) < enemy.radius + fruit.radius) {
-      enemy.radius += .1;
-      game.elements.splice(index, 1);
-      fruits.create(index, randomdistance.x(), randomdistance.y(), 1, color[random()]);
-      game.elements.push(fruits.list[index]);
-    }
+    if ((distance * deep) < circle1.radius + circle2.radius)
+      callback();
   },
   chkWall: function(element, coord){
     if(element.x - element.radius < 10 && coord == 'x'){

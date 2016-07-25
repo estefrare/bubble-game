@@ -9,6 +9,13 @@ var bombs = {
       radius: radius,
       backgroundColor: color,
       state: state,
+      comeBack: function(){  //new function to come back a bomb
+        if(!bombs.list[id].state){
+          setTimeout(function(){
+            bombs.list[id].state = true;
+          } ,3000); // 1'
+        }
+      },
       init: function(){},
       update: function(){},
       render: function () {
