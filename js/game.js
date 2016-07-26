@@ -3,7 +3,6 @@ var game = {
 	y: 0,
 	width: 0,
 	height: 0,
-  img: null,
 	backgroundColor: '#333',
 	context: null,
 	state: null,
@@ -108,14 +107,17 @@ var game = {
 			switch(game.state){
 				case gameStateEnum.pause:
 					text.draw('pause', '#fff');
+					text.draw('press S to nitro', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);
 					break;
 				case gameStateEnum.win:
 					text.draw('YOU WIN', '#FFF');
-					text.draw('press R to play again', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);		
+					text.draw('press R to play again', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);
+					text.draw('Remake of Agar.io by Esteban Frare', 'green', 15, null, 'center', 'center', null, game.height-40);	
 					break;
 				case gameStateEnum.over:
 					text.draw('GAME OVER', '#FFF');
 					text.draw('press R to play again', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);
+					text.draw('Remake of Agar.io by Esteban Frare', 'green', 15, null, 'center', 'center', null, game.height-40);	
 					break;
 			}
 		}

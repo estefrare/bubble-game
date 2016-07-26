@@ -9,15 +9,11 @@ var wall = {
 			width: width,
 			height: height,
 			backgroundColor: '#585858',
-      img: null,
 			init: function () {},
 			update: function () {},
 			render: function () {
-        /*this.img = new Image();
-        this.img.src = 'img/block.png';
-        var background = game.context.createPattern(this.img,"repeat");*/
 				game.context.fillStyle = this.backgroundColor;
-        game.context.fillRect(this.x, this.y, this.width, this.height);
+        		game.context.fillRect(this.x, this.y, this.width, this.height);
 			}
 		}
 	}

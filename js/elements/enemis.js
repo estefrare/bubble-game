@@ -11,7 +11,7 @@ var enemis = {
       backgroundColor: color,
       move: function(){
         this.speed = 10 / (this.radius * .8);
-        var value;
+        var value, long = 70;
         var flag = false;
         var close = {
           sum: 1000,
@@ -21,7 +21,11 @@ var enemis = {
         for (var i = 0; i < game.elements.length; i++){
           if(game.elements[i].class === 'player'){
             value = Math.abs(game.elements[i].x - enemis.list[id].x) + Math.abs(game.elements[i].y - enemis.list[id].y);
-            if(value < this.radius+70 && game.elements[i].radius < this.radius){
+            if(player.state == 'stop')
+              long = 800;
+            else 
+              long = 70;
+            if(value < this.radius+long && game.elements[i].radius < this.radius){
               close.sum = value;
               close.x = game.elements[i].x;
               close.y = game.elements[i].y;
