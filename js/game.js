@@ -84,7 +84,6 @@ var game = {
 		if(enemies == 0){
 			game.win()
 		}
-
 		++game.lastStateChange;
 		if(game.state === gameStateEnum.playing){
 			for(var i = 0; i < game.elements.length; i++){

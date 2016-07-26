@@ -13,7 +13,7 @@ var bombs = {
         if(!bombs.list[id].state){
           setTimeout(function(){
             bombs.list[id].state = true;
-          } ,3000); // 1'
+          } ,60000); // 1'
         }
       },
       init: function(){},

@@ -14,7 +14,7 @@ var player = {
     }else {
       this.speed = 15 / (this.radius * .8);
       this.color = '#4000FF';
-    }
+    } 
     var angle = trigonometry.getAngle(this.x, this.y, coord.x, coord.y);
     if(!collision.chkWall(player, 'x')){
       this.x += trigonometry.getIncrementX(angle, this.speed);
@@ -27,7 +27,10 @@ var player = {
     for (var i = 0; i < game.elements.length; i++){
       if(game.elements[i].class === 'fruit'){
         collision.circleAndCircle(player, game.elements[i], function(){ 
-          player.radius += .1;
+          if(player.radius > 30)
+            player.radius += .05;
+          else 
+            player.radius += .1;
           game.elements.splice(i, 1);
           fruits.create(i, randomdistance.x(), randomdistance.y(), 1, randomColor());
           game.elements.push(fruits.list[i]);
@@ -36,10 +39,12 @@ var player = {
       if(game.elements[i].class === 'enemy'){
         collision.circleAndCircle(player, game.elements[i], function(){ 
           if(player.radius > game.elements[i].radius + .5){
-            player.radius += game.elements[i].radius / 5;
+            if(player.radius > 30)
+              player.radius += game.elements[i].radius / 8;
+            else 
+              player.radius += game.elements[i].radius / 5;
             game.elements.splice(i, 1);
-          }
-          if(game.elements[i].radius > player.radius + .5){
+          }else if(game.elements[i].radius > player.radius + .5){
             game.elements[i].radius += player.radius / 3;
             game.over();
           }
@@ -84,6 +89,5 @@ var player = {
     game.context.arc(this.x, this.y, this.radius/2, 0, Math.PI*2, true);
     game.context.closePath();
     game.context.fill();
-
 	}
 };

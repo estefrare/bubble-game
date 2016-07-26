@@ -13,7 +13,6 @@ var load = function() {
   document.onmousemove = position;
   document.onkeydown = keyboard.press;
   document.onkeyup = keyboard.release;
-  console.dir(document);
   var canvas = document.getElementById('game');
   var data = {
     x: canvas.offsetLeft,

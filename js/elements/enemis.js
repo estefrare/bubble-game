@@ -11,7 +11,6 @@ var enemis = {
       backgroundColor: color,
       move: function(){
         this.speed = 10 / (this.radius * .8);
-
         var value;
         var flag = false;
         var close = {

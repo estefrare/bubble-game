@@ -1,6 +1,6 @@
 var keyboard = {
 	p: false,
-  s: false,
+  	s: false,
 	press: function (evt){
 		var key =  keyboardEnum[evt.code];
 		if(key){
@@ -17,5 +17,5 @@ var keyboard = {
 
 var keyboardEnum = {
 	KeyP: 'p',
-  KeyS: 's'
+  	KeyS: 's'
 }
