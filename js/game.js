@@ -37,7 +37,7 @@ var game = {
 		  game.elements.push(fruits.list[i]);
 		}
 		//CREA ENEMIES
-		for(var i = 1; i < 15; i++){
+		for(var i = 1; i < 3; i++){
 		  enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, randomColor());
 		  game.elements.push(enemis.list[i]);
 		}
@@ -64,15 +64,11 @@ var game = {
 	},
 	win: function(){
 		game.state = 'w';
-	    game.context.font = '30px Arial';
-	    game.context.textAlign = 'center';
-	    game.context.fillText('YOU WIN', game.width/2, game.height/2);
+		text.draw('YOU WIN', '#FFF');
 	},
 	over: function(){
 		game.state = 'end';
-	    game.context.font = '30px Arial';
-	    game.context.textAlign = 'center';
-	    game.context.fillText('GAME OVER', game.width/2, game.height/2);
+		text.draw('GAME OVER', '#FFF');
 	},
 	update: function(){
 		var enemies = 0;

@@ -5,8 +5,8 @@ var text = {
 		fontSize = fontSize || 30;
 		fontFamily = fontFamily || 'monospace';
 		game.context.fillStyle = color;
-		game.context.font = fontSize + 'px' + fontFamily;
-		game.context.align = align || 'center';
+		game.context.font = fontSize + 'px ' + fontFamily;
+		game.context.textAlign = align || 'center';
 		game.context.baseLine = baseLine || 'center';
 		game.context.fillText(srt, x, y);
 	}
