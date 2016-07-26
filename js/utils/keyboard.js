@@ -17,5 +17,6 @@ var keyboard = {
 
 var keyboardEnum = {
 	KeyP: 'p',
-  	KeyS: 's'
+  	KeyS: 's',
+  	KeyR: 'r'
 }

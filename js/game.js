@@ -37,7 +37,8 @@ var game = {
 		  game.elements.push(fruits.list[i]);
 		}
 		//CREA ENEMIES
-		for(var i = 1; i < 3; i++){
+
+		for(var i = 1; i <= 10; i++){
 		  enemis.create(i, randomdistance.x(), randomdistance.y(), (Math.random() * 25) + 5, randomColor());
 		  game.elements.push(enemis.list[i]);
 		}
@@ -64,11 +65,9 @@ var game = {
 	},
 	win: function(){
 		game.state = 'w';
-		text.draw('YOU WIN', '#FFF');
 	},
 	over: function(){
-		game.state = 'end';
-		text.draw('GAME OVER', '#FFF');
+		game.state = 'o';
 	},
 	update: function(){
 		var enemies = 0;
@@ -89,12 +88,14 @@ var game = {
 		if(keyboard.p && game.lastStateChange > 30){
 			game.pause();
 		}
+		if(keyboard.r && game.state != 'playing')
+			location.reload();
 		game.render();
 	},
 	render: function(){
 		if(game.state === gameStateEnum.playing){
 			//LIMPIA EL CANVAS
-      var background = game.context.createPattern(game.img,"repeat");
+      		var background = game.context.createPattern(game.img,"repeat");
 			game.context.fillStyle = background;
 			game.context.fillRect(game.x, game.y, game.width, game.height);
 			//LLAMA A TODOS LOS RENDERS
@@ -107,6 +108,14 @@ var game = {
 			switch(game.state){
 				case gameStateEnum.pause:
 					text.draw('pause', '#fff');
+					break;
+				case gameStateEnum.win:
+					text.draw('YOU WIN', '#FFF');
+					text.draw('press R to play again', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);		
+					break;
+				case gameStateEnum.over:
+					text.draw('GAME OVER', '#FFF');
+					text.draw('press R to play again', 'orange', 15, null, 'center', 'center', null, (game.height/2)+20);
 					break;
 			}
 		}
